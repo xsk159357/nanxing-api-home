@@ -1,1 +1,71 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南星 API</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:linear-gradient(160deg,#0a0e27 0%,#111827 35%,#1a1033 65%,#0f172a 100%);color:#e4e6eb;min-height:100vh;overflow-x:hidden;position:relative}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle 3s infinite ease-in-out}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.glow1{position:fixed;top:-120px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,.18) 0%,transparent 70%);pointer-events:none;z-index:0}
+.glow2{position:fixed;bottom:-100px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);pointer-events:none;z-index:0}
+.container{max-width:1000px;margin:0 auto;padding:60px 24px 40px;position:relative;z-index:1}
+.hero{text-align:center;padding:40px 0 64px;animation:fadeIn .8s ease-out}
+.hero-icon{font-size:56px;margin-bottom:20px;display:inline-block;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:48px;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#f472b6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px}
+.hero p{font-size:19px;color:#9ca3af;margin-bottom:32px;line-height:1.6}
+.cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;text-decoration:none;border-radius:10px;font-size:15px;font-weight:600;box-shadow:0 4px 24px rgba(59,130,246,.35);transition:all .3s ease}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(59,130,246,.5)}
+.btn-secondary{display:inline-block;padding:14px 32px;background:rgba(255,255,255,.06);color:#e4e6eb;text-decoration:none;border-radius:10px;font-size:15px;font-weight:600;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);transition:all .3s ease}
+.btn-secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.section-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:64px;animation:fadeIn .8s ease-out .2s both}
+.feature-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:28px 22px;backdrop-filter:blur(12px);transition:all .3s ease}
+.feature-card:hover{border-color:rgba(139,92,246,.4);transform:translateY(-4px);box-shadow:0 8px 30px rgba(139,92,246,.15)}
+.feature-icon{font-size:32px;margin-bottom:14px}
+.feature-card h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px}
+.feature-card p{font-size:13px;color:#9ca3af;line-height:1.7}
+.quickstart{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.12));border:1px solid rgba(99,102,241,.25);border-radius:18px;padding:36px;margin-bottom:64px;backdrop-filter:blur(12px);animation:fadeIn .8s ease-out .4s both}
+.steps{display:flex;flex-direction:column;gap:20px}
+.step{display:flex;align-items:flex-start;gap:16px}
+.step-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;box-shadow:0 2px 12px rgba(59,130,246,.4)}
+.step-text{font-size:15px;color:#e4e6eb;line-height:1.7;padding-top:4px}
+.step-text strong{color:#fff}
+.step-text code{background:rgba(0,0,0,.35);padding:3px 10px;border-radius:5px;font-size:13px;color:#93c5fd;font-family:Consolas,Monaco,monospace}
+.models{margin-bottom:64px;animation:fadeIn .8s ease-out .6s both}
+.model-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.model-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:22px 18px;text-align:center;backdrop-filter:blur(12px);transition:all .3s ease}
+.model-card:hover{border-color:rgba(96,165,250,.4);transform:translateY(-3px)}
+.model-icon{font-size:28px;margin-bottom:10px}
+.model-card h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.model-card p{font-size:12px;color:#6b7280;line-height:1.5}
+.tips{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px 32px;margin-bottom:48px;animation:fadeIn .8s ease-out .8s both}
+.tips ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.tips li{font-size:14px;color:#9ca3af;line-height:1.6;padding-left:24px;position:relative}
+.tips li:before{content:'\2713';position:absolute;left:0;color:#34d399;font-weight:700}
+.footer{text-align:center;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+.footer p{font-size:12px;color:#4b5563;line-height:1.8}
+@keyframes fadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.hero h1{font-size:34px}.container{padding:40px 16px 30px}.quickstart{padding:24px}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="glow1"></div>
+<div class="glow2"></div>
+<div class="container">
+<div class="hero"><div class="hero-icon">&#10024;</div><h1>南星 API</h1><p>极致的价格 &middot; 高可用 &middot; 欢迎体验</p><div class="cta-group"><a href="#/token" class="btn-primary">&#128273; 创建令牌</a><a href="#/models" class="btn-secondary">&#129504; 查看模型</a></div></div>
+<div class="features"><div class="feature-card"><div class="feature-icon">&#9889;</div><h3>极速响应</h3><p>多线路智能调度，低延迟高并发，毫秒级返回结果</p></div><div class="feature-card"><div class="feature-icon">&#128176;</div><h3>超值价格</h3><p>官方价低至 2 折，按量计费，用多少付多少，无隐藏费用</p></div><div class="feature-card"><div class="feature-icon">&#128295;</div><h3>兼容 OpenAI</h3><p>标准接口格式，一行 base_url 无缝切换所有应用和工具</p></div><div class="feature-card"><div class="feature-icon">&#128737;</div><h3>稳定可靠</h3><p>多渠道容灾备份，自动故障转移，99.9% 服务可用性</p></div></div>
+<div class="quickstart"><div class="section-title">&#128640; 三步快速接入</div><div class="steps"><div class="step"><div class="step-num">1</div><div class="step-text">前往左侧菜单「<strong>令牌管理</strong>」，点击「添加令牌」创建你的 API Key</div></div><div class="step"><div class="step-num">2</div><div class="step-text">将接口地址 <code>/v1</code> 和 Key 配置到你的应用中，完全兼容 OpenAI 格式</div></div><div class="step"><div class="step-num">3</div><div class="step-text">在「<strong>钱包管理</strong>」充值后即可开始调用，消费明细实时可查</div></div></div></div>
+<div class="models"><div class="section-title">&#129504; 支持的模型能力</div><div class="model-grid"><div class="model-card"><div class="model-icon">&#128172;</div><h4>文本对话</h4><p>GPT / Claude / 文心 / 通义</p></div><div class="model-card"><div class="model-icon">&#127912;</div><h4>图像生成</h4><p>DALL&middot;E / Midjourney / 可灵</p></div><div class="model-card"><div class="model-icon">&#127908;</div><h4>语音合成</h4><p>TTS / 语音克隆 / 多音色</p></div><div class="model-card"><div class="model-icon">&#128221;</div><h4>Embedding</h4><p>向量嵌入 / 文本向量化</p></div></div></div>
+<div class="tips"><div class="section-title">&#128204; 温馨提示</div><ul><li>所有接口兼容 OpenAI 标准格式，可直接替换 base_url 使用，无需修改代码逻辑</li><li>调用记录和消费明细可在「使用日志」中实时查看，支持按时间和模型筛选</li><li>遇到问题请通过站内工单联系客服，我们会尽快回复处理</li></ul></div>
+<div class="footer"><p>如有问题，请通过站内工单联系客服 &middot; &copy; 2026 南星 API 保留所有权利</p></div>
+</div>
+<script>var c=document.getElementById('stars'),n=60,cols=['#fff','#a78bfa','#60a5fa','#f472b6'];for(var i=0;i<n;i++){var s=document.createElement('div');s.className='star';var z=Math.random()*2.5+0.5;s.style.width=z+'px';s.style.height=z+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.animationDuration=(Math.random()*2+2)+'s';var cl=cols[Math.floor(Math.random()*cols.length)];s.style.background=cl;s.style.boxShadow='0 0 '+(z*3)+'px '+cl;c.appendChild(s);}</script>
+</body>
+</html>
