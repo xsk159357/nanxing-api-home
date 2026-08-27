@@ -6,12 +6,13 @@
 <title>南星 API</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:linear-gradient(160deg,#0a0e27 0%,#111827 35%,#1a1033 65%,#0f172a 100%);color:#e4e6eb;min-height:100vh;overflow-x:hidden;position:relative}
-.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#fff;color:#e4e6eb;min-height:100vh;overflow-x:hidden}
+.wrapper{background:linear-gradient(160deg,#0a0e27 0%,#111827 35%,#1a1033 65%,#0f172a 100%);min-height:calc(100vh - 0px);position:relative;overflow:hidden;border-radius:0}
+.stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .star{position:absolute;border-radius:50%;animation:twinkle 3s infinite ease-in-out}
 @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
-.glow1{position:fixed;top:-120px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,.18) 0%,transparent 70%);pointer-events:none;z-index:0}
-.glow2{position:fixed;bottom:-100px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);pointer-events:none;z-index:0}
+.glow1{position:absolute;top:-120px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,.18) 0%,transparent 70%);pointer-events:none;z-index:0}
+.glow2{position:absolute;bottom:-100px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);pointer-events:none;z-index:0}
 .container{max-width:1000px;margin:0 auto;padding:60px 24px 40px;position:relative;z-index:1}
 .hero{text-align:center;padding:40px 0 64px;animation:fadeIn .8s ease-out}
 .hero-icon{font-size:56px;margin-bottom:20px;display:inline-block;animation:float 4s ease-in-out infinite}
@@ -55,6 +56,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 </style>
 </head>
 <body>
+<div class="wrapper">
 <div class="stars" id="stars"></div>
 <div class="glow1"></div>
 <div class="glow2"></div>
@@ -65,6 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 <div class="models"><div class="section-title">&#129504; 支持的模型能力</div><div class="model-grid"><div class="model-card"><div class="model-icon">&#128172;</div><h4>文本对话</h4><p>GPT / Claude / 文心 / 通义</p></div><div class="model-card"><div class="model-icon">&#127912;</div><h4>图像生成</h4><p>DALL&middot;E / Midjourney / 可灵</p></div><div class="model-card"><div class="model-icon">&#127908;</div><h4>语音合成</h4><p>TTS / 语音克隆 / 多音色</p></div><div class="model-card"><div class="model-icon">&#128221;</div><h4>Embedding</h4><p>向量嵌入 / 文本向量化</p></div></div></div>
 <div class="tips"><div class="section-title">&#128204; 温馨提示</div><ul><li>所有接口兼容 OpenAI 标准格式，可直接替换 base_url 使用，无需修改代码逻辑</li><li>调用记录和消费明细可在「使用日志」中实时查看，支持按时间和模型筛选</li><li>遇到问题请通过站内工单联系客服，我们会尽快回复处理</li></ul></div>
 <div class="footer"><p>如有问题，请通过站内工单联系客服 &middot; &copy; 2026 南星 API 保留所有权利</p></div>
+</div>
 </div>
 <script>var c=document.getElementById('stars'),n=60,cols=['#fff','#a78bfa','#60a5fa','#f472b6'];for(var i=0;i<n;i++){var s=document.createElement('div');s.className='star';var z=Math.random()*2.5+0.5;s.style.width=z+'px';s.style.height=z+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';s.style.animationDuration=(Math.random()*2+2)+'s';var cl=cols[Math.floor(Math.random()*cols.length)];s.style.background=cl;s.style.boxShadow='0 0 '+(z*3)+'px '+cl;c.appendChild(s);}</script>
 </body>
